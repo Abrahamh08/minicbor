@@ -63,3 +63,9 @@ impl serde::de::Error for DecodeError {
         Self(decode::Error::message("custom error"))
     }
 }
+
+impl<E> EncodeError<E> {
+    pub fn into_inner(self) -> encode::Error<E> {
+        self.0
+    }
+}
